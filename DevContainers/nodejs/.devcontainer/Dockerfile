@@ -13,7 +13,7 @@ LABEL maintainer="Alejandro Medici <alejandro.medici@bnextiteration.com.ar>" \
       description="Defined the proper setup to be used with Visual Studio Code per NodeJS"
 
 RUN microdnf update && \
-    microdnf -y install wget && \
+    microdnf -y install wget tar gzip git && \
     microdnf clean all && rm -rf /var/cache/microdnf
 
 #installing nodejs 

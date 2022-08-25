@@ -14,6 +14,7 @@ This repository will help you with the following list of readt to use dev enviro
 * react
 * python 3x
 * C++
+* PHP
 
 If you need to use any of these  dev environemnts, you just need to copy the .devcontainer folder into your root project folder and use The <b>Visual Studio Code Remote - Containers extension</b>. You can download from <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers" >Here</a>
 
