@@ -19,7 +19,7 @@ RUN microdnf update && \
 #installing nodejs 
 RUN echo "** Installing NodeJS LTS"
 #RUN yum install -y gcc-c++ make 
-RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+RUN microdnf module enable nodejs:16
 RUN microdnf install -y nodejs
 
 COPY ./ /scripts
