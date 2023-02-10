@@ -2,7 +2,7 @@
 ##     The Base image with usable tools
 #######################################################################################
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest as OSBASE
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest as osbase
 
 LABEL maintainer="Alejandro Medici <alejandro.medici@bnextiteration.com.ar>" \
       name="nit-python3-dev-container" \
