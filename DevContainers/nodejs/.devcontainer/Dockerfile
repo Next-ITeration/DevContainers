@@ -2,7 +2,7 @@
 ##     The Base image with usable tools
 #######################################################################################
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest as OSBASE
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest AS osbase
 
 LABEL maintainer="Alejandro Medici <alejandro.medici@bnextiteration.com.ar>" \
       name="nit-nodejs-dev-container" \
@@ -19,7 +19,7 @@ RUN microdnf update && \
 #installing nodejs 
 RUN echo "** Installing NodeJS LTS"
 #RUN yum install -y gcc-c++ make 
-RUN microdnf module enable nodejs:16
+RUN microdnf module enable nodejs:20
 RUN microdnf install -y nodejs
 
 COPY ./ /scripts

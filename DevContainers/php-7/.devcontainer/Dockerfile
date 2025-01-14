@@ -2,7 +2,7 @@
 ##     The Base image with usable tools
 #######################################################################################
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest as OSBASE
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest AS osbase
 
 LABEL maintainer="Alejandro Medici <alejandro.medici@bnextiteration.com.ar>" \
       name="nit-php7.4-dev-container" \
@@ -24,11 +24,13 @@ RUN microdnf install php
 RUN microdnf -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json}
 
 # Adding composer as actually is one of the most used package manager for PHP
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-RUN mv composer.phar /usr/local/bin/composer
+#RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+#RUN php composer-setup.php
+#RUN php -r "unlink('composer-setup.php');"
+#RUN mv composer.phar /usr/local/bin/composer
+
+COPY --from=composer/composer:latest-bin /composer /usr/local/bin/composer
 
 COPY ./ /scripts
 
